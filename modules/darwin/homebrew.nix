@@ -4,12 +4,26 @@
   options = {
     brewFormulae = lib.mkOption {
       type = lib.types.listOf lib.types.str;
+      default = [];
       description = "Homebrew formulae to install (system-wide)";
     };
     
     brewCasks = lib.mkOption {
       type = lib.types.listOf lib.types.str;
+      default = [];
       description = "Homebrew casks to install (system-wide)";
+    };
+
+    brewTaps = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Homebrew repositories to tap (system-wide)";
+    };
+
+    brewServices = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Homebrew formulae to run as services (system-wide)";
     };
   };
   
@@ -43,10 +57,9 @@
         lockfiles = false; # Don't save lockfile (since running from anywhere)
       };
       
-      brews = config.brewFormulae;
-      
-      # GUI apps don't show up in Spotlight if installed from nixpkgs, so we use homebrew for those
-      casks = config.brewCasks;
+      taps = config.brewTaps;
+      brews = config.brewFormulae ++ (map (name: { inherit name; start_service = true; }) config.brewServices);
+      casks = config.brewCasks; # Spotlight can't find apps from nixpkgs, so we use homebrew
     };
   };
 }
