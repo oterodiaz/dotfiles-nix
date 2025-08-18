@@ -33,10 +33,9 @@
           window-padding-balance = true;
     
           # Font
-          font-family = "Liga SFMono Nerd Font";
+          font-family = "JetBrains Mono";
           font-size = 14;
           font-synthetic-style = false;
-          adjust-cell-width = "-10%";
           font-thicken = true;
     
           # Enable ligatures

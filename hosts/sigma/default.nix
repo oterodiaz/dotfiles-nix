@@ -18,12 +18,19 @@ inputs.nix-darwin.lib.darwinSystem rec {
       hostName = "Sigma";
     }
     {
+      brewTaps = [
+       "d12frosted/emacs-plus"
+        "nikitabobko/tap"
+      ];
       brewFormulae = [
         "trash"
+        "d12frosted/emacs-plus/emacs-plus@30"
+      ];
+      brewServices = [
+        "d12frosted/emacs-plus/emacs-plus@30"
       ];
       brewCasks = [
         "arc"
-        "zen-browser"
         "1password"
         "1password-cli" 
         "zed"
@@ -39,12 +46,13 @@ inputs.nix-darwin.lib.darwinSystem rec {
         "middleclick" # Three-finger click to simulate middle click on trackpad
         "mos" # Smooth scrolling with mice
         "nightfall" # Easier dark/light mode switching
-        "rectangle" # Better window tiling
         "transmission" # Torrent client
         "utm" # Virtual machines
         "whisky" # Play Windows games on Mac
-        "xcodes" # Manage different Xcode versions
-        "font-sf-mono-nerd-font-ligaturized" # TODO: fork and create a nix package
+        "xcodes-app" # Manage different Xcode versions
+        "logi-options+"
+        "nikitabobko/tap/aerospace"
+        "font-jetbrains-mono"
       ];
     }
     {
