@@ -9,9 +9,9 @@ inputs.nix-darwin.lib.darwinSystem rec {
     ../../modules/common
     ../../modules/darwin
     inputs.home-manager.darwinModules.home-manager
-    {
+    rec {
       user = "diego";
-      homeDirectory = /Users/diego;
+      homeDirectory = /Users/${user};
       gitName = "oterodiaz";
       gitEmail = "44239644+oterodiaz@users.noreply.github.com";
       computerName = "Sigma";
