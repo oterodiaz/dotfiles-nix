@@ -15,7 +15,8 @@
   
   config = lib.mkIf pkgs.stdenv.isDarwin {
     # Install Xcode Command Line Tools and Homebrew first
-    system.activationScripts.preUserActivation.text = ''
+    # TODO: this now runs as root as of nix-darwin 25.05, which might break things
+    system.activationScripts.preActivation.text = ''
       if ! xcode-select --version 2> /dev/null; then
         $DRY_RUN_CMD xcode-select --install
       fi

@@ -13,8 +13,7 @@
   };
   
   config = lib.mkIf pkgs.stdenv.isDarwin {
-    services.nix-daemon.enable = true;
-    security.pam.enableSudoTouchIdAuth = true;
+    security.pam.services.sudo_local.touchIdAuth = true;
     
     networking.computerName = config.computerName;
     networking.hostName = config.hostName;
@@ -55,5 +54,6 @@
     };
     
     system.stateVersion = 5;
+    system.primaryUser = config.user;
   };
 }

@@ -28,7 +28,7 @@
 
   config = {
     home-manager.users.${config.user} = {
-      home.stateVersion = "24.11";
+      home.stateVersion = "25.05";
       
       home.file = lib.mkIf (config.zsh.enable || config.fish.enable) {
         ".hushlogin".text = "";

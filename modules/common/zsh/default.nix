@@ -24,7 +24,7 @@
         };
 
         # .zshrc
-        initExtraFirst = let execFishEnabled = lib.boolToString true; in ''
+        initContent = let execFishEnabled = lib.boolToString true; zshConfigEarlyInit = lib.mkBefore ''
           if command -v fish > /dev/null 2>&1 && [ "''${ZSH_EXEC_FISH:-${execFishEnabled}}" = "true" ]; then
             # Ensure that there is a terminal attached to the session
             # before executing fish so i.e. Zed can read the environment
@@ -32,9 +32,7 @@
               exec fish
             fi
           fi
-        '';
-
-        initExtraBeforeCompInit = ''
+        ''; zshConfigBeforeCompInit = lib.mkOrder 550 ''
           prompt_custom_setup () {
               local newline=$'\n'
               if [ $SSH_CLIENT ]; then
@@ -56,9 +54,7 @@
                   printf '%b' '\033[0m'
               fi
           }
-        '';
-
-        initExtra = ''
+        ''; zshConfig = lib.mkOrder 1000 ''
           autoload edit-command-line
           zle -N edit-command-line
 
@@ -112,7 +108,7 @@
 
           prompt_custom_setup "$@"
           greeting
-        '';
+        ''; in lib.mkMerge [ zshConfigEarlyInit zshConfigBeforeCompInit zshConfig ];
 
         sessionVariables = {
           # Less colors

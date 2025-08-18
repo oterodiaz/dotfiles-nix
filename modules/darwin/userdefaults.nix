@@ -4,11 +4,10 @@
   config = lib.mkIf pkgs.stdenv.isDarwin {
     # Enable settings that home-manager doesn't support
     system = {
+      # TODO: these now run as root as of nix-darwin 25.05, which might break things,
+      # especially the last two which refer to my home directory
       activationScripts.postActivation.text = ''
         sudo chflags nohidden /Volumes
-      '';
-
-      activationScripts.postUserActivation.text = ''
         chflags nohidden ~/Library
         mkdir -p ~/Pictures/Screenshots
       '';
