@@ -46,6 +46,7 @@
       git
       curl
       wget
+      fzf
     ];
     
     nix.gc.interval = {
