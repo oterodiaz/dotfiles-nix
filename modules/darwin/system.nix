@@ -13,6 +13,7 @@
   };
   
   config = lib.mkIf pkgs.stdenv.isDarwin {
+    nix.settings.extra-experimental-features = [ "nix-command" "flakes" ];
     security.pam.services.sudo_local.touchIdAuth = true;
     
     networking.computerName = config.computerName;
