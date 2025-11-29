@@ -41,7 +41,11 @@
         bat
         ripgrep
         fd
-      ];
+        direnv
+        lazygit
+      ] ++ (if stdenv.isDarwin then [
+        redshift
+      ] else []);
 
       home.shellAliases = {
         rm = "rm -i";

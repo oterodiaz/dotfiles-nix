@@ -54,7 +54,7 @@
       Minute = 15;
       Day = 1;
     };
-    
+
     system.stateVersion = 5;
     system.primaryUser = config.user;
   };

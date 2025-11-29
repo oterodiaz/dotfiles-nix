@@ -6,6 +6,9 @@ inputs.nix-darwin.lib.darwinSystem rec {
     pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
   };
   modules = [
+    {
+      nixpkgs.config.allowUnfree = true;
+    }
     ../../modules/common
     ../../modules/darwin
     inputs.home-manager.darwinModules.home-manager
@@ -19,7 +22,7 @@ inputs.nix-darwin.lib.darwinSystem rec {
     }
     {
       brewTaps = [
-       "d12frosted/emacs-plus"
+        "d12frosted/emacs-plus"
         "nikitabobko/tap"
       ];
       brewFormulae = [
@@ -53,6 +56,7 @@ inputs.nix-darwin.lib.darwinSystem rec {
         "logi-options+"
         "nikitabobko/tap/aerospace"
         "font-jetbrains-mono"
+        "google-chrome"
       ];
     }
     {
